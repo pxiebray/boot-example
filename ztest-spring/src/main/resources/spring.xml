@@ -1,0 +1,14 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:job="http://pxie.com/schema"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://pxie.com/schema
+        http://pxie.com/schema/register.xsd">
+
+    <bean id="userService" class="com.ztest.spring.service.UserService" />
+
+    <job:register host="127.0.0.1" port="2181" />
+</beans>
+

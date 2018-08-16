@@ -1,0 +1,24 @@
+<xsd:schema
+        xmlns="http://pxie.com/schema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://pxie.com/schema">
+
+    <xsd:complexType name="registerComplexType">
+        <xsd:attribute name="host" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ The register host. ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="port" type="xsd:int">
+            <xsd:annotation>
+                <xsd:documentation><![CDATA[ The register port. ]]></xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:element name="register" type="registerComplexType">
+        <xsd:annotation>
+            <xsd:documentation><![CDATA[ register ]]></xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>
