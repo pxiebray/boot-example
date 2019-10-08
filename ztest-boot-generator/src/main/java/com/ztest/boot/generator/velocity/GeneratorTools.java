@@ -1,6 +1,5 @@
-package com.ztest.boot.generator;
+package com.ztest.boot.generator.velocity;
 
-import com.fasterxml.jackson.databind.util.ClassUtil;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -16,14 +15,13 @@ public class GeneratorTools {
 		properties.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
 		Velocity.init(properties);
 
-		VelocityContext vContext = new VelocityContext();
-		vContext.put("name", new String("Velocity"));
 
+		VelocityContext vContext = new VelocityContext();
+		vContext.put("className", new String("Test"));
 		Template template = Velocity.getTemplate("template/mytemplate.vm");
 
 		String targetFile = sourcePath() + File.separator + "Test.java";
 		System.out.println("目标文件路径 " + targetFile);
-
 		try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(targetFile))){
 			template.merge(vContext, writer);
 		}
