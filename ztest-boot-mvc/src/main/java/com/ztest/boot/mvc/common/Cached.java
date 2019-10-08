@@ -10,8 +10,9 @@ import java.lang.annotation.*;
  * @data 2018/7/13 0013 00
  */
 @Documented
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
+@Inherited
 public @interface Cached {
-    String value();
+    String value() default "";
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.PropertyPlaceholderHelper;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.Properties;
 
 /**
@@ -24,6 +25,7 @@ public class UserService implements ApplicationContextAware, ResourceLoaderAware
     private ApplicationContext applicationContext;
     private Environment environment;
     private ResourceLoader resourceLoader;
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
@@ -40,12 +42,12 @@ public class UserService implements ApplicationContextAware, ResourceLoaderAware
     }
 
     @PostConstruct
-    public void test() {
-        PropertyPlaceholderHelper helper = new PropertyPlaceholderHelper(PlaceholderConfigurerSupport.DEFAULT_PLACEHOLDER_PREFIX,
-                PlaceholderConfigurerSupport.DEFAULT_PLACEHOLDER_SUFFIX, PlaceholderConfigurerSupport.DEFAULT_VALUE_SEPARATOR, true);
-        Properties properties = new Properties();
-        properties.setProperty("server.port", "1");
-        String port = helper.replacePlaceholders("${server.port}", properties);
-        System.out.println("test " + port);
+    public void initMethod() {
+        System.out.println("UserService.@PostConstruct");
+    }
+
+    @PreDestroy
+    public void destoryMethod() {
+        System.out.println("UserService.@PreDestroy");
     }
 }

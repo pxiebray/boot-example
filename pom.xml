@@ -7,7 +7,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.1.RELEASE</version>
+        <!--<version>2.1.1.RELEASE</version>-->
+        <version>2.0.5.RELEASE</version>
     </parent>
 
     <groupId>com.ztest.boot</groupId>
@@ -19,6 +20,8 @@
         <module>ztest-boot-first</module>
         <module>ztest-boot-mvc</module>
         <module>ztest-boot-framework</module>
+        <module>ztest-sharding-table</module>
+        <module>ztest-boot-generator</module>
     </modules>
 
     <dependencyManagement>

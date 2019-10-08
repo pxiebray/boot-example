@@ -1,14 +1,42 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:job="http://pxie.com/schema"
-       xsi:schemaLocation="
-        http://www.springframework.org/schema/beans
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://pxie.com/schema
-        http://pxie.com/schema/register.xsd">
+        http://pxie.com/schema/register.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
-    <bean id="userService" class="com.ztest.spring.service.UserService" />
+    <aop:aspectj-autoproxy/>
 
+    <!-- 加载自定义配置文件，BeanFactoryPostProcess扩展 -->
+    <bean name="property" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:component.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="userService" class="com.ztest.spring.service.UserService" init-method="init" >
+        <property name="name" value="${name}" />
+        <property name="demoService" ref="demoService" />
+    </bean>
+
+    <bean id="demoService" class="com.ztest.spring.service.DemoService" >
+    </bean>
+
+    <!-- 自定义标签xml -->
     <job:register host="127.0.0.1" port="2181" />
+
+    <!-- 自定义BeanFactoryPostProcess -->
+    <bean id="testBeanFactoryPostProcess" class="com.ztest.spring.beans.process.TestBeanFactoryPostProcess" >
+        <property name="userService" ref="userService" />
+    </bean>
+
+    <!-- 自定义BeanPostProcess -->
+    <bean id="testBeanPostProcess" class="com.ztest.spring.beans.process.TestBeanPostProcess" />
 </beans>
 

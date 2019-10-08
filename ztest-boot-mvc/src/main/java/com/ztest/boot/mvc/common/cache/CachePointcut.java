@@ -14,14 +14,23 @@ import java.lang.reflect.Method;
 public class CachePointcut extends StaticMethodMatcherPointcut implements ClassFilter {
 
     @Override
-    public boolean matches(Method method, Class<?> aClass) {
-        Cached cached = method.getAnnotation(Cached.class);
-        return cached != null;
+    public boolean matches(Method method, Class<?> targetClass) {
+        if (!matches(method.getDeclaringClass())) {
+            return false;
+        }
+
+        Cached methodCached = method.getAnnotation(Cached.class);
+        Cached classCached = targetClass.getAnnotation(Cached.class);
+        return methodCached != null;
     }
 
     @Override
     public boolean matches(Class<?> aClass) {
         String className = aClass.getName();
-        return className.startsWith("com.ztest.boot");
+        if (className.startsWith("com.ztest.boot.mvc.service")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

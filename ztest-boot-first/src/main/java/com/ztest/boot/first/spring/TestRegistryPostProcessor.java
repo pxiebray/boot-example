@@ -14,13 +14,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
 
+
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry beanDefinitionRegistry) throws BeansException {
-
+        System.out.println("BeanDefinitionRegistryPostProcessor.postProcessBeanDefinitionRegistry");
     }
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
-
+        System.out.println("BeanDefinitionRegistryPostProcessor.postProcessBeanFactory");
     }
 }
