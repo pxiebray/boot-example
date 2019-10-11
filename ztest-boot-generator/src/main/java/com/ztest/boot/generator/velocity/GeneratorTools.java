@@ -25,6 +25,8 @@ public class GeneratorTools {
 		try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(targetFile))){
 			template.merge(vContext, writer);
 		}
+
+		getFilePath();
 	}
 
 	/**
